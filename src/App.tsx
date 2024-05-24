@@ -1,25 +1,45 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {
+  CssBaseline,
+  ThemeProvider,
+  createTheme,
+  useTheme,
+} from "@mui/material";
+import { TDMain } from "./pages";
 
 function App() {
+  const theme = useTheme();
+  const overrideTheme = createTheme({
+    spacing: 1,
+    typography: {
+      fontFamily: [`"Roboto"`, "sans-serif"].join(","),
+    },
+    palette: {
+      primary: { main: "#00C16A" },
+    },
+    components: {
+      MuiButtonBase: {
+        styleOverrides: {
+          root: {
+            padding: `${theme.spacing(0.8, 2)} !important`,
+          },
+        },
+      },
+      MuiTypography: {
+        styleOverrides: {
+          root: {
+            fontSize: "14px",
+            textTransform: "none",
+          },
+        },
+      },
+    },
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={overrideTheme}>
+      <CssBaseline />
+      <TDMain />;
+    </ThemeProvider>
   );
 }
 
