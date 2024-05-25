@@ -15,12 +15,12 @@ export const SideBarPanel = () => {
       case ETruckerTabId.Markets:
         return <></>;
       default:
-        return <Typography>unkown</Typography>;
+        return <Typography>unknown</Typography>;
     }
   }, [tab]);
 
   return (
-    <Grid container padding={theme.spacing(16)}>
+    <Grid container height={1} padding={theme.spacing(16)}>
       {renderTabPanelComponent()}
     </Grid>
   );

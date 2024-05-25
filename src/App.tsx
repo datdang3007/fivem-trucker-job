@@ -20,7 +20,7 @@ function App() {
       MuiButtonBase: {
         styleOverrides: {
           root: {
-            padding: `${theme.spacing(0.8, 2)} !important`,
+            paddingInline: `${theme.spacing(2)} !important`,
           },
         },
       },
