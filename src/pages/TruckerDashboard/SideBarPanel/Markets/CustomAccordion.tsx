@@ -10,22 +10,29 @@ import {
 } from "@mui/material";
 import { useMemo } from "react";
 import { COLOR_PALLETTE } from "../../../../constants";
-import { ITruckerMarket } from "../../../../interfaces";
+import { ITruckerMarket, ITruckerMarketItem } from "../../../../interfaces";
 import { CardMarket } from "./CardMarket";
 
 type Props = {
   market: ITruckerMarket;
+  onClickShowDetail: (info: ITruckerMarketItem) => void;
 };
 
 export const CustomAccordion = (props: Props) => {
   const theme = useTheme();
-  const { market } = props;
+  const { market, onClickShowDetail } = props;
 
   const renderMarketItems = useMemo(() => {
     return market?.list?.map((item) => {
-      return <CardMarket key={item.id} market={item} />;
+      return (
+        <CardMarket
+          key={item.id}
+          market={item}
+          onClickShowDetail={onClickShowDetail}
+        />
+      );
     });
-  }, [market]);
+  }, [market, onClickShowDetail]);
 
   return (
     <Accordion

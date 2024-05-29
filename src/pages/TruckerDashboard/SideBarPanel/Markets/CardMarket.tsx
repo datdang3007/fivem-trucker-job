@@ -6,11 +6,12 @@ import { ITruckerMarketItem } from "../../../../interfaces";
 
 type Props = {
   market: ITruckerMarketItem;
+  onClickShowDetail: (info: ITruckerMarketItem) => void;
 };
 
 export const CardMarket = (props: Props) => {
   const theme = useTheme();
-  const { market } = props;
+  const { market, onClickShowDetail } = props;
 
   return (
     <CustomCard container columnGap={theme.spacing(16)}>
@@ -88,6 +89,7 @@ export const CardMarket = (props: Props) => {
               color: "primary",
               variant: "outlined",
               startIcon: <InfoOutlined />,
+              onClick: () => onClickShowDetail(market),
             }}
           />
           <ButtonCommon

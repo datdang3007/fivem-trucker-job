@@ -24,6 +24,13 @@ function App() {
           },
         },
       },
+      MuiIconButton: {
+        styleOverrides: {
+          root: {
+            padding: `${theme.spacing(1)} !important`,
+          },
+        },
+      },
       MuiTypography: {
         styleOverrides: {
           root: {

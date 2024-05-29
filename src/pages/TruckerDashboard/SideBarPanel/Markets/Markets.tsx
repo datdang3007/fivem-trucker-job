@@ -1,8 +1,9 @@
 import { Grid, Typography, styled, useTheme } from "@mui/material";
-import { useMemo } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { COLOR_PALLETTE } from "../../../../constants";
-import { ITruckerMarket } from "../../../../interfaces";
+import { ITruckerMarket, ITruckerMarketItem } from "../../../../interfaces";
 import { CustomAccordion } from "./CustomAccordion";
+import { DialogDetailPrice } from "./DialogDetailPrice";
 
 const listTruckerMarket: ITruckerMarket[] = [
   {
@@ -50,12 +51,31 @@ const listTruckerMarket: ITruckerMarket[] = [
 
 export const Markets = () => {
   const theme = useTheme();
+  const [DetailPriceInfo, setDetailPriceInfo] =
+    useState<ITruckerMarketItem | null>(null);
+
+  const handleOpenDialogDetailPrice = useCallback(
+    (info: ITruckerMarketItem) => {
+      setDetailPriceInfo(info);
+    },
+    []
+  );
+
+  const handleCloseDialogDetailPrice = useCallback(() => {
+    setDetailPriceInfo(null);
+  }, []);
 
   const renderCardsMarketComponent = useMemo(() => {
     return listTruckerMarket.map((market) => {
-      return <CustomAccordion key={market.id} market={market} />;
+      return (
+        <CustomAccordion
+          key={market.id}
+          market={market}
+          onClickShowDetail={handleOpenDialogDetailPrice}
+        />
+      );
     });
-  }, []);
+  }, [handleOpenDialogDetailPrice]);
 
   return (
     <Grid container rowGap={theme.spacing(16)} height={1}>
@@ -66,11 +86,18 @@ export const Markets = () => {
         </TypographyStyle>
       </Grid>
 
+      {/* List Market */}
       <ListMarketStyle>
         <Grid container rowGap={theme.spacing(12)}>
           {renderCardsMarketComponent}
         </Grid>
       </ListMarketStyle>
+
+      {/* Dialog Detail Price */}
+      <DialogDetailPrice
+        info={DetailPriceInfo}
+        onClose={handleCloseDialogDetailPrice}
+      />
     </Grid>
   );
 };
