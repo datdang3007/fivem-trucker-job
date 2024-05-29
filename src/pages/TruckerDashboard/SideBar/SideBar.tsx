@@ -1,4 +1,8 @@
-import { DirectionsCarRounded, StoreRounded } from "@mui/icons-material";
+import {
+  Factory,
+  StoreRounded,
+  DirectionsCarRounded,
+} from "@mui/icons-material";
 import { Grid, useTheme } from "@mui/material";
 import { ButtonCommon } from "../../../components";
 import { useTruckerJobProvider } from "../../../providers";
@@ -16,6 +20,11 @@ const listButton = [
     icon: <StoreRounded />,
     tab: ETruckerTabId.Markets,
   },
+  {
+    text: "Nhà cung cấp",
+    icon: <Factory />,
+    tab: ETruckerTabId.Suppliers,
+  },
 ];
 
 export const SideBar = () => {
@@ -25,6 +34,7 @@ export const SideBar = () => {
   const renderButtonsComponent = useCallback(() => {
     return listButton.map((b) => (
       <ButtonCommon
+        key={b.tab}
         text={b.text}
         buttonProps={{
           fullWidth: true,

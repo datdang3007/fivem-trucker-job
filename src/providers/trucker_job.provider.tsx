@@ -19,7 +19,7 @@ const TruckerJobContext = createContext<TruckerJobContextProps | undefined>(
 
 // Define the provider component
 export const TruckerJobProvider = ({ children }: { children: ReactNode }) => {
-  const [tab, setTab] = useState(ETruckerTabId.Vehicles);
+  const [tab, setTab] = useState(ETruckerTabId.Suppliers);
 
   const handleSetTab = useCallback(
     (newTab: ETruckerTabId) => {
